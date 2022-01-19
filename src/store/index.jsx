@@ -1,4 +1,3 @@
-import { createStore } from "redux";
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 // initial state for counter
@@ -16,7 +15,7 @@ const sliceCounter = createSlice({
       state.counter--;
     },
     increase(state, action) {
-      state.counter + action.payload;
+      state.counter = state.counter + action.payload;
     },
 
     toggleCounter(state) {
@@ -62,5 +61,8 @@ const sliceCounter = createSlice({
 const store = configureStore({
   reducer: sliceCounter.reducer,
 });
+
+// create actions like this when we are working with redux toolkit
+export const counterActions = sliceCounter.actions;
 
 export default store;
