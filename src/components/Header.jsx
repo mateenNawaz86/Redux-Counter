@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { authActions } from "../store/index";
+import { authActions } from "../store/AuthStates";
 import { useDispatch } from "react-redux";
 
 import classes from "./Header.module.css";
