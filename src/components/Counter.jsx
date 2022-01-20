@@ -6,10 +6,10 @@ import classes from "./Counter.module.css";
 
 const Counter = () => {
   // use redux store state  in this component
-  const counter = useSelector((state) => state.counter);
+  const counter = useSelector((state) => state.counter.counter);
 
   // useSelector for toggling operation
-  const toggleCounter = useSelector((state) => state.showCounter);
+  const toggleCounter = useSelector((state) => state.counter.showCounter);
 
   // function for dispatch an action
   const dispatch = useDispatch();

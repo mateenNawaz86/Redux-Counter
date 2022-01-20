@@ -1,12 +1,12 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 // initial state for counter
-const initialState = { counter: 0, showCounter: true };
+const initialCounter = { counter: 0, showCounter: true };
 
 // createSlice alternative of counterReducer
 const sliceCounter = createSlice({
   name: "counter",
-  initialState,
+  initialState: initialCounter,
   reducers: {
     increment(state) {
       state.counter++;
@@ -24,45 +24,35 @@ const sliceCounter = createSlice({
   },
 });
 
-// create a reducer counter function
-// const counterReducer = (state = initialState, action) => {
-//   switch (action.type) {
-//     case "INCREAMENT":
-//       return {
-//         counter: state.counter + 1,
-//         showCounter: state.showCounter,
-//       };
+// initial State for authentication
+const initialAuthentication = { isAuth: false };
 
-//     case "INCREASE":
-//       return {
-//         counter: state.counter + action.payload,
-//         showCounter: state.showCounter,
-//       };
+// create slice for authentication
+const authenticateSlice = createSlice({
+  name: "authenticate",
+  initialState: initialAuthentication,
+  reducers: {
+    login(state) {
+      state.isAuth = true;
+    },
+    logOut(state) {
+      state.isAuth = false;
+    },
+  },
+});
 
-//     case "DECREAMENT":
-//       return {
-//         counter: state.counter - 1,
-//         showCounter: state.showCounter,
-//       };
-
-//     case "TOGGLE":
-//       return {
-//         showCounter: !state.showCounter,
-//         counter: state.counter,
-//       };
-
-//     default:
-//       return state;
-//   }
-// };
-
-// create store
-
+// slices store
 const store = configureStore({
-  reducer: sliceCounter.reducer,
+  reducer: {
+    counter: sliceCounter.reducer,
+    authenticate: authenticateSlice.reducer,
+  },
 });
 
 // create actions like this when we are working with redux toolkit
 export const counterActions = sliceCounter.actions;
+
+// create actions for authentication
+export const authActions = authenticateSlice.actions;
 
 export default store;
